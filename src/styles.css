@@ -1,0 +1,265 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-steel: var(--steel);
+  --color-steel-foreground: var(--steel-foreground);
+  --font-display: "Oswald", "Impact", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --shadow-glow: 0 0 40px color-mix(in oklab, var(--primary) 45%, transparent);
+  --shadow-elevated: 0 30px 60px -20px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.04);
+  --gradient-primary: linear-gradient(135deg, oklch(0.62 0.24 27), oklch(0.5 0.22 27));
+  --gradient-steel: linear-gradient(180deg, oklch(0.32 0.01 250), oklch(0.16 0.01 250));
+  --gradient-radial-glow: radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primary) 25%, transparent), transparent 60%);
+}
+
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/oswald/v53/TK3iWkUHHAIjg752HD8Ghe4.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIa1ZL7W0Q5nw.woff2") format("woff2");
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Brand: deep black, brushed steel, signature red */
+  --background: oklch(0.13 0.005 250);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.17 0.008 250);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.17 0.008 250);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.62 0.24 27);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.22 0.008 250);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.22 0.008 250);
+  --muted-foreground: oklch(0.7 0.01 250);
+  --accent: oklch(0.62 0.24 27);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.62 0.24 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.1);
+  --ring: oklch(0.62 0.24 27);
+  --steel: oklch(0.78 0.005 250);
+  --steel-foreground: oklch(0.13 0.005 250);
+}
+
+.dark {
+  --background: oklch(0.13 0.005 250);
+  --foreground: oklch(0.97 0.005 250);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+}
+
+@utility text-gradient-steel {
+  background: linear-gradient(180deg, oklch(0.95 0 0) 0%, oklch(0.55 0.005 250) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-red {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero — soft steel headline (less harsh than full bright steel) */
+@utility text-gradient-hero-steel {
+  background: linear-gradient(
+    165deg,
+    oklch(0.99 0 0) 0%,
+    oklch(0.82 0.008 250) 38%,
+    oklch(0.58 0.02 250) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-hero-red {
+  background: linear-gradient(
+    120deg,
+    oklch(0.78 0.22 27) 0%,
+    oklch(0.62 0.24 27) 45%,
+    oklch(0.52 0.2 27) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hero-vignette {
+  background: radial-gradient(
+    ellipse 100% 85% at 50% 42%,
+    oklch(0.14 0.02 250 / 0) 0%,
+    oklch(0.1 0.015 250 / 0.55) 55%,
+    oklch(0.06 0.02 250 / 0.92) 100%
+  );
+}
+
+@utility hero-edge-fade {
+  background: linear-gradient(
+    90deg,
+    oklch(0.1 0.015 250 / 0.95) 0%,
+    transparent 18%,
+    transparent 82%,
+    oklch(0.1 0.015 250 / 0.85) 100%
+  );
+}
+
+@utility hero-noise {
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@utility hero-shimmer-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.62 0.24 27 / 0.5),
+    oklch(1 0 0 / 0.15),
+    oklch(0.62 0.24 27 / 0.4),
+    transparent
+  );
+}
+
+/* Hero headline — overrides global h1 negative tracking for readable, elegant type */
+@utility hero-headline {
+  letter-spacing: 0.055em;
+  line-height: 1.18;
+  font-feature-settings: "kern" 1;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility diag-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    oklch(0.62 0.24 27) 0 12px,
+    transparent 12px 24px
+  );
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 60%, transparent); }
+  50% { box-shadow: 0 0 0 14px color-mix(in oklab, var(--primary) 0%, transparent); }
+}
+@keyframes drive-in {
+  from { transform: translateX(-12%) scale(1.02); opacity: 0; }
+  to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes hero-ambient {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05) translate(2%, -1%);
+  }
+}
+
+@utility animate-hero-ambient {
+  animation: hero-ambient 14s ease-in-out infinite;
+}
+
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 2.2s ease-out infinite;
+}
+@utility animate-drive-in {
+  animation: drive-in 1.2s cubic-bezier(.2,.8,.2,1) both;
+}
+
+/* Homepage — elevated panels & editorial rhythm */
+@utility premium-editorial {
+  letter-spacing: 0.28em;
+}
+
+@utility premium-stat-rail {
+  border-image: linear-gradient(90deg, transparent, oklch(0.62 0.24 27 / 0.35), transparent) 1;
+}
+
+@utility premium-bento-panel {
+  background:
+    linear-gradient(145deg, oklch(0.2 0.01 250 / 0.85) 0%, oklch(0.14 0.006 250 / 0.92) 100%);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.06),
+    0 24px 48px -28px oklch(0 0 0 / 0.55);
+}
+
+@utility premium-services-frame {
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.05),
+    0 32px 64px -32px oklch(0 0 0 / 0.65);
+}
